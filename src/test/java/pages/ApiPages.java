@@ -3,25 +3,20 @@ package pages;
 import helper.Endpoint;
 import helper.Utility;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.io.File;
 import java.util.List;
 
-import static helper.Models.getListUser;
-//import static helper.Models.postCreateUser;
+import static helper.Models.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ApiPages {
 
-    String setURL;
+    String setURL, global_id;
     Response res;
-    //private Object utility;
 
-    // public void prepareURL()
-  //{
-  //    System.out.println("Hello Prepare URL");
-  //}
 
   public void prepareUrlValidFor( String url){
       switch (url){
@@ -44,20 +39,19 @@ public class ApiPages {
 
     public void hitApiGetListUsers(){
       res = getListUser(setURL);
-        //System.out.println(res.getBody().asString());
+     System.out.println(res.getBody().asString());
     }
 
-    //public void hitApiPostCreateNewUser(){
-       // res = postCreateUser(setURL);
-    //}
+    public void hitApiPostCreateNewUser(){
+        res = postCreateUser(setURL);
+        System.out.println(res.getBody().asString());
+    }
 
     public void validationStatusCodeIsEqual( int status_code){
-        //System.out.println("print from page :3");
         assertThat(res.statusCode()).isEqualTo(status_code);
   }
 
     public void validationResponseBodyGetListUsers(){
-        //System.out.println("print from page :4");
         List<Object> id = res.jsonPath().getList("id");
         List<Object> name = res.jsonPath().getList("name");
         List<Object> email = res.jsonPath().getList("email");
@@ -70,16 +64,68 @@ public class ApiPages {
         System.out.println(gender.get(1));
         System.out.println(status.get(1));
 
-        assertThat(id.get(0)).isNotNull();
-        assertThat(name.get(0)).isNotNull();
-        assertThat(email.get(0)).isNotNull();
-        assertThat(gender.get(0)).isIn("female","male");
-        assertThat(status.get(0)).isIn("active", "inactive");
+        assertThat(id.get(1)).isNotNull();
+        assertThat(name.get(1)).isNotNull();
+        assertThat(email.get(1)).isNotNull();
+        assertThat(gender.get(1)).isIn("female","male");
+        assertThat(status.get(1)).isIn("active", "inactive");
+
     }
 
     public void validationResponseJsonWithJSONScema( String filename){
-        //System.out.println("print from page :5");
         File JSONfile = Utility.getJSONSchemaFile(filename);
         res.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(JSONfile));
     }
+
+    public void validationResponseBodyCreateUser(){
+        JsonPath jsonPathEvaluator = res.jsonPath();
+        Integer id  = jsonPathEvaluator.get("id");
+        String name = jsonPathEvaluator.get ("name");
+        String email = jsonPathEvaluator.get("email");
+        String gender = jsonPathEvaluator.get("gender");
+        String status = jsonPathEvaluator.get("status");
+
+        assertThat(id).isNotNull();
+        assertThat(name).isNotNull();
+        assertThat(email).isNotNull();
+        assertThat(gender).isIn("female","male");
+        assertThat(status).isIn("active", "inactive");
+
+        global_id =Integer.toString(id);
+
+    }
+
+    public void hitApiDeleteUser(){
+      res = deleteUser(setURL,global_id);
+    }
+
+    public  void hitUpdateUser(){
+      res = updateUser(setURL,global_id);
+}
+
+    public  void hitWrongUpdateUser(){
+        res = WrongUpadteUser(setURL,global_id);
+    }
+
+public void validationResponseUpdateUser(){
+        JsonPath jsonPathEvaluator = res.jsonPath();
+        Integer id = jsonPathEvaluator.get("id");
+        String name = jsonPathEvaluator.get("name");
+        String email = jsonPathEvaluator.get("email");
+        String gender = jsonPathEvaluator.get("gender");
+        String status = jsonPathEvaluator.get("status");
+
+        assertThat(id).isNotNull();
+        assertThat(name).isNotNull();
+        assertThat(email).isNotNull();
+        assertThat(gender).isIn("female","male");
+        assertThat(status).isIn("active", "inactive");
+}
+
+    public void hitApiPostCreateNewWrongUser(){
+        res = postCreateWrongUser(setURL);
+        System.out.println(res.getBody().asString());
+    }
+
+
    }

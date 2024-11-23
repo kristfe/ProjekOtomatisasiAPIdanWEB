@@ -2,6 +2,9 @@ package stepDef;
 
 import io.cucumber.java.*;
 
+import static helper.Utility.quitDriver;
+import static helper.Utility.startDriver;
+
 public class Hooks {
 
     @BeforeAll
@@ -14,9 +17,13 @@ public class Hooks {
 
     @Before
     public void beforeTest(){
+        //pangil driver celenium
+        startDriver();
     }
 
     @After
     public void afterTest(){
+    //kill celenium
+        quitDriver();
     }
 }

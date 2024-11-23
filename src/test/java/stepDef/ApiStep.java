@@ -10,16 +10,9 @@ public class ApiStep {
 
     ApiPages apiPages;
 
-
     public ApiStep() {
         this.apiPages = new ApiPages();
     }
-
-    //  @Given("prepare url valid for get list data")
-    //   public void prepareUrlValidForGetListData() {
-    //      System.out.println("hello step");
-    //      apiPages.prepareURL();
-    //  }
 
     @Given("prepare url valid for {string}")
     public void prepareUrlValidFor(String url) {
@@ -35,25 +28,51 @@ public class ApiStep {
 
     @Then("validation status code is equal {int}")
     public void validationStatusCodeIsEqual(int status_code) {
-        //System.out.println("Step 3");
         apiPages.validationStatusCodeIsEqual(status_code);
     }
 
     @Then("validation response body get list users")
     public void validationResponseBodyGetListUsers() {
-        //  System.out.println("Step 4");
         apiPages.validationResponseBodyGetListUsers();
     }
 
    @Then("validation response json with JSONScema {string}")
-    public void validationResponseJsonWithJSONScema(String filename) {
-        // System.out.println("Step 5");
+  public void validationResponseJsonWithJSONScema(String filename) {
         apiPages.validationResponseJsonWithJSONScema(filename);
     }
 
-  //  @And("hit api post create new user")
- //   public void hitApiPostCreateNewUser() {
- //   apiPages.hitApiPostCreateNewUser();
+   @And("hit api post create new user")
+   public void hitApiPostCreateNewUser() {
+       apiPages.hitApiPostCreateNewUser();
+    }
 
-    //}
+    @Then("validation response body post create new user")
+    public void validationResponseBodyPostCreateNewUser() {
+        apiPages.validationResponseBodyCreateUser();
+    }
+
+    @And("hit api delete new")
+    public void hitApiDeleteNew() {
+        apiPages.hitApiDeleteUser();
+    }
+
+    @And("hit api update data")
+    public void hitApiUpdateData() {
+        apiPages.hitUpdateUser();
+    }
+
+    @Then("validation response body update user")
+    public void validationResponseBodyUpdateUser() {
+        apiPages.validationResponseUpdateUser();
+    }
+
+    @And("hit api post create new user invalid")
+    public void hitApiPostCreateNewUserInvalid() {
+        apiPages.hitApiPostCreateNewWrongUser();
+    }
+
+    @And("hit api update wrong data")
+    public void hitApiUpdateWrongData() {
+        apiPages.hitWrongUpdateUser();
+    }
 }
