@@ -5,6 +5,7 @@ on:
     branches: [ "test" ]
   pull_request:
     branches: [ "test" ]
+workflow_dispatch: 
 
 jobs:
   build:
@@ -20,8 +21,8 @@ jobs:
         distribution: 'temurin'
 
     #install browser
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1.7.2
+     - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.6.1
         
     #install gradlew
     - name: Setup gradlew
