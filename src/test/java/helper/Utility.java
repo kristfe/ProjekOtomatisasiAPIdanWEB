@@ -39,7 +39,8 @@ public static void startDriver(){
 }
 
 public static void quitDriver(){
- //       driver.quit();
+       driver.quit();
+       System.out.println("driver quit-console lock");
 }
 
 }
