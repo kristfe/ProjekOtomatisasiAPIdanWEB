@@ -28,7 +28,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Execute Tests
-        run: ./gradlew test
+        run: ./gradlew apiTest
 
       - name: Download a Build Artifact (Optional)
         if: always()
