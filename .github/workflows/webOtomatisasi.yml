@@ -21,10 +21,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Chrome
+      - name: Setup Chromium
         uses: browser-actions/setup-chrome@v1.6.1
         with:
-         chrome-version: '131.0.6778.70'
+          chrome-version: latest  # or use a different known version like '115.0.0.0'
+          install-dependencies: false
+
 
       - name: Make gradlew executable
         run: chmod +x gradlew
