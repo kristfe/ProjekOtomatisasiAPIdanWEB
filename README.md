@@ -1,4 +1,29 @@
 ﻿# ProgramOtomatisasiAPI
+library yang di gunakan 
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.12.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.12.0'
+
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.3.0'
+    testImplementation 'io.rest-assured:json-path:5.3.0'
+    testImplementation 'io.rest-assured:json-schema-validator:5.3.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.0'
+    testImplementation group: 'org.json', name: 'json', version: '20220924'
+
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.10.0'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation 'org.hamcrest:hamcrest-library:1.3'
+
+Chrome : browser-actions/setup-chrome@v1.6.1
+Java   : Set up JDK 17
+
+
+ 
 Feature: Test Automation Rest Api
 @api
     Scenario: Test get list data normal
