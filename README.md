@@ -1,4 +1,22 @@
-﻿# ProgramOtomatisasiAPI
+﻿# Automated API and WEB Testing 
+Project Automation testing untuk menguji API dengan data https://gorest.co.in/public/v2/users
+web product store https://www.saucedemo.com/
+
+#Build With 
+Chrome : browser-actions/setup-chrome@v1.6.1
+Java   : Set up JDK 17
+cucumber framework
+selenium 
+restassure
+gradle wraper 
+
+#Project Structure 
+![image](https://github.com/user-attachments/assets/d627ebc9-bf09-428a-99d9-b88739e9f74c)
+
+
+
+
+ 
 library yang di gunakan 
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
@@ -19,8 +37,7 @@ library yang di gunakan
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testImplementation 'org.hamcrest:hamcrest-library:1.3'
 
-Chrome : browser-actions/setup-chrome@v1.6.1
-Java   : Set up JDK 17
+
 
 
  
