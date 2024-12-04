@@ -37,3 +37,9 @@ jobs:
       - name: Download a Build Artifact (Optional)
         if: always()
         uses: actions/download-artifact@v3
+
+      - name: Upload otomatisasi WEB
+        uses: actions/upload-artifact@v4
+        with:
+          name: otomatisasi-report
+          path: reports
